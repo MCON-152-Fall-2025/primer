@@ -20,4 +20,5 @@ public class EnvDemo  {
         String javaVersion = System.getProperty("java.version");
         System.out.println("\nJava Version: " + javaVersion);
     }
+
 }
