@@ -1,0 +1,34 @@
+<configuration>
+
+    <!-- 1. CONSOLE APPENDER (The Destination) -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- The Formatter (PatternLayoutEncoder) -->
+        <encoder>
+            <!-- Custom Pattern: Timestamp [Level] {LoggerName} - Message -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %logger{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 2. FILE APPENDER (A second Destination) -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>demo.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 3. THE ROOT LOGGER (The Filter) -->
+    <!-- Set the minimum level to INFO. This filters out all DEBUG and TRACE messages. -->
+    <root level="TRACE">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- OPTIONAL: Set a specific class to DEBUG level -->
+    <!-- This overrides the 'INFO' root level, showing only App.class DEBUG messages. -->
+    <logger name="LoggerDemo" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+</configuration>
